@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine;
 public class Move : MonoBehaviour
 {
     Rigidbody rigidBody;
+    AudioSource audioSource;
     [SerializeField] float mainThrust = 1000f;
     [SerializeField] float rotationThrust = 100f;
 
@@ -13,6 +15,7 @@ public class Move : MonoBehaviour
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -22,11 +25,20 @@ public class Move : MonoBehaviour
         ProcessRotation();
     }
 
+
     void ProcessThrust()
     {
         if (Input.GetKey(KeyCode.Space))
         {
             rigidBody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+            if (!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+        }
+        else
+        {
+            audioSource.Stop();
         }
     }
     void ProcessRotation()
@@ -43,8 +55,8 @@ public class Move : MonoBehaviour
 
     void ApplyRotation(float rotationThisFrame)
     {
-        rigidBody.freezeRotation = true;
-        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
         rigidBody.freezeRotation = false;
+        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
+        rigidBody.freezeRotation = true;
     }
 }
