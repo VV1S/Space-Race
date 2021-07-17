@@ -55,8 +55,8 @@ public class Move : MonoBehaviour
 
     void ApplyRotation(float rotationThisFrame)
     {
-        rigidBody.freezeRotation = false;
-        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
         rigidBody.freezeRotation = true;
+        transform.Rotate(Vector3.forward * rotationThisFrame * Time.deltaTime);
+        rigidBody.freezeRotation = false;
     }
 }
