@@ -12,7 +12,7 @@ public class CollisionHandler : MonoBehaviour
                 break;
 
             case "Finish":
-                Debug.Log("Dobra robota!");
+                LoadNextLevel();
                 break;
 
             case "Fuel":
@@ -29,5 +29,15 @@ public class CollisionHandler : MonoBehaviour
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         //It assures that current scene will be realoaded.
         SceneManager.LoadScene(currentSceneIndex);
+    }
+    void LoadNextLevel()
+    {
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentSceneIndex + 1;
+        if(nextSceneIndex==SceneManager.sceneCountInBuildSettings)//It prevents from counting too far.
+        {
+            nextSceneIndex = 0;
+        }
+            SceneManager.LoadScene(nextSceneIndex);
     }
 }
