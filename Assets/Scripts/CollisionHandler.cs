@@ -3,7 +3,20 @@ using UnityEngine.SceneManagement;
 
 public class CollisionHandler : MonoBehaviour
 {
+    //PARAMETERS - for tunning, typically set in the editor
     [SerializeField] float levelLoadDelay = 1f;
+    [SerializeField] AudioClip soundOfSuccess;
+    [SerializeField] AudioClip soundOfMisery;
+
+    //CACHE - e.g. references for readability or speed
+
+    //STATE - private instance (member) variables
+    AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
     private void OnCollisionEnter(Collision other)
     {
         switch(other.gameObject.tag)
@@ -27,14 +40,14 @@ public class CollisionHandler : MonoBehaviour
     }
     void StartCrashSequence()
     {
-        //todo add SFX upon crash
+        audioSource.PlayOneShot(soundOfMisery);
         //todo add particle effect upon crash
         GetComponent<Move>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
     }
     void LoadNextLevelSequence()
     {
-        //todo add SFX upon success
+        audioSource.PlayOneShot(soundOfSuccess);
         //todo add particle effect upon success
         GetComponent<Move>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);

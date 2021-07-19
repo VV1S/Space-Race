@@ -5,12 +5,19 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    Rigidbody rigidBody;
-    AudioSource audioSource;
+    //PARAMETERS - for tunning, typically set in the editor
     [SerializeField] float mainThrust = 1000f;
     [SerializeField] float rotationThrust = 100f;
+    [SerializeField] AudioClip mainEngine;
 
+    //CACHE - e.g. references for readability or speed
     Vector3 myNewPosition;
+
+    //STATE - private instance (member) variables
+    Rigidbody rigidBody;
+    AudioSource audioSource;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +40,7 @@ public class Move : MonoBehaviour
             rigidBody.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
             if (!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(mainEngine);
             }
         }
         else
