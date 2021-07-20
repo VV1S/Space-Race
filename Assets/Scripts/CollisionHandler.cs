@@ -13,44 +13,55 @@ public class CollisionHandler : MonoBehaviour
     //STATE - private instance (member) variables
     AudioSource audioSource;
 
+    bool isTransitioning = false;
+
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
     private void OnCollisionEnter(Collision other)
     {
-        switch(other.gameObject.tag)
+        if (isTransitioning)
         {
-            case "Friendly":
-                Debug.Log("Startujemy!");
-                break;
+            return;
+        }
 
-            case "Finish":
-                LoadNextLevelSequence();
-                break;
+            switch (other.gameObject.tag)
+            {
+                case "Friendly":
+                    Debug.Log("Startujemy!");
+                    break;
 
-            case "Fuel":
-                Debug.Log("It's time to spread democracy!");
-                break;
+                case "Finish":
+                    LoadNextLevelSequence();
+                    break;
 
-            default:
-                StartCrashSequence();
-                break;
+                case "Fuel":
+                    Debug.Log("It's time to spread democracy!");
+                    break;
+
+                default:
+                    StartCrashSequence();
+                    break;
         }
     }
     void StartCrashSequence()
     {
+        audioSource.Stop();
         audioSource.PlayOneShot(soundOfMisery);
         //todo add particle effect upon crash
         GetComponent<Move>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
+        isTransitioning = true;
     }
     void LoadNextLevelSequence()
     {
+        audioSource.Stop();
         audioSource.PlayOneShot(soundOfSuccess);
         //todo add particle effect upon success
         GetComponent<Move>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
+        isTransitioning = true;
     }
 
     void ReloadLevel()
