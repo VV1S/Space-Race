@@ -8,6 +8,9 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip soundOfSuccess;
     [SerializeField] AudioClip soundOfMisery;
 
+    [SerializeField] ParticleSystem explosionOfSuccess;
+    [SerializeField] ParticleSystem explosionOfMisery;
+
     //CACHE - e.g. references for readability or speed
 
     //STATE - private instance (member) variables
@@ -49,7 +52,7 @@ public class CollisionHandler : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.PlayOneShot(soundOfMisery);
-        //todo add particle effect upon crash
+        explosionOfMisery.Play();
         GetComponent<Move>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
         isTransitioning = true;
@@ -58,7 +61,7 @@ public class CollisionHandler : MonoBehaviour
     {
         audioSource.Stop();
         audioSource.PlayOneShot(soundOfSuccess);
-        //todo add particle effect upon success
+        explosionOfSuccess.Play();
         GetComponent<Move>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
         isTransitioning = true;
