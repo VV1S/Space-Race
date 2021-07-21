@@ -10,6 +10,11 @@ public class Move : MonoBehaviour
     [SerializeField] float rotationThrust = 100f;
     [SerializeField] AudioClip mainEngine;
 
+    [SerializeField] ParticleSystem rocketJetParticle;
+    [SerializeField] ParticleSystem leftThrustleParticle;
+    [SerializeField] ParticleSystem rightThrustleParticle;
+
+
     //CACHE - e.g. references for readability or speed
     Vector3 myNewPosition;
 
@@ -42,9 +47,14 @@ public class Move : MonoBehaviour
             {
                 audioSource.PlayOneShot(mainEngine);
             }
+            if (!rocketJetParticle.isPlaying)
+            {
+                rocketJetParticle.Play();
+            }
         }
         else
         {
+            rocketJetParticle.Stop();
             audioSource.Stop();
         }
     }
@@ -53,11 +63,25 @@ public class Move : MonoBehaviour
         if (Input.GetKey(KeyCode.A))
         {
             ApplyRotation(rotationThrust);
+            if (!leftThrustleParticle.isPlaying)
+            {
+                leftThrustleParticle.Play();
+            }
         }
         else if (Input.GetKey(KeyCode.D))
         {
             ApplyRotation(-rotationThrust);
+            if (!rightThrustleParticle.isPlaying)
+            {
+                rightThrustleParticle.Play();
+            }
         }
+        else
+        {
+            leftThrustleParticle.Stop();
+            rightThrustleParticle.Stop();
+        }
+
     }
 
     void ApplyRotation(float rotationThisFrame)
