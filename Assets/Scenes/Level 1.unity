@@ -135,8 +135,8 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 252793010650949211, guid: 54b90e42ade25884c8418eb300b53a80, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 60
+      propertyPath: m_LocalScale.x
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 252793010650949211, guid: 54b90e42ade25884c8418eb300b53a80, type: 3}
       propertyPath: m_LocalPosition.x
@@ -353,13 +353,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 10, z: -27}
+  m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
+  m_LocalPosition: {x: 0, y: 15, z: -35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 15, y: 0, z: 0}
 --- !u!1001 &1697966184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -373,7 +373,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4607629450380245569, guid: 4ab4004cdb0ceb348bf289fe1ba5e4fc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 4607629450380245569, guid: 4ab4004cdb0ceb348bf289fe1ba5e4fc, type: 3}
       propertyPath: m_LocalPosition.y
@@ -430,7 +430,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1782490107196677579, guid: a469b16ff5540a2499fff2fce870ed0f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1782490107196677579, guid: a469b16ff5540a2499fff2fce870ed0f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -487,7 +487,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 689577481169439120, guid: bf537d001830b1c4ba0121b36157cd50, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -20
+      value: -30
       objectReference: {fileID: 0}
     - target: {fileID: 689577481169439120, guid: bf537d001830b1c4ba0121b36157cd50, type: 3}
       propertyPath: m_LocalPosition.y
